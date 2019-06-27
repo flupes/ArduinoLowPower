@@ -17,13 +17,16 @@
 volatile int repetitions = 1;
 
 // Pin used to trigger a wakeup
-const int pin = 8;
+const int pin = 2;
 
 void setup() {
+  // Give a chance to reflash
+  delay(10*1000);
+  
   pinMode(LED_BUILTIN, OUTPUT);
   // Set pin 8 as INPUT_PULLUP to avoid spurious wakeup
   pinMode(pin, INPUT_PULLUP);
-  // Attach a wakeup interrupt on pin 8, calling repetitionsIncrease when the device is woken up
+  // Attach a wakeup interrupt on pin 2, calling repetitionsIncrease when the device is woken up
   LowPower.attachInterruptWakeup(pin, repetitionsIncrease, CHANGE);
 }
 
